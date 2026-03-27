@@ -20,7 +20,27 @@
 }
 
 body {
-  background: var(--background);
+  background: #030712;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
 }
+
+/* Leaflet map takes full height */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  background: #111827;
+}
+
+/* Custom tooltip */
+.india-tooltip {
+  background: #1f2937 !important;
+  border: 1px solid #374151 !important;
+  color: white !important;
+  border-radius: 8px !important;
+  padding: 8px 12px !important;
+  font-size: 12px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important;
+}
+.india-tooltip::before { display: none !important; }
