@@ -1,0 +1,101 @@
+{
+  "version": "1.0.0",
+  "huggingface_repo": "bhaskar-pandey/india-intelligence-data",
+  "datasets": [
+    {
+      "id": "census_district_2011",
+      "name": "District Census 2011",
+      "source_file": "census_data/district_census_2011.csv",
+      "description": "641 districts with 100+ demographic columns",
+      "join_key": "pc11_district_id",
+      "level": "district",
+      "export_format": ["parquet", "csv"],
+      "status": "ready"
+    },
+    {
+      "id": "census_state_2011",
+      "name": "State Population 2011",
+      "source_file": "census_data/state_population.csv",
+      "description": "35 states with population, area, density, sex ratio",
+      "join_key": "pc11_state_id",
+      "level": "state",
+      "export_format": ["parquet", "csv"],
+      "status": "ready"
+    },
+    {
+      "id": "habitation_2009",
+      "name": "Basic Habitation Info April 2009",
+      "source_file": "BASIC_HABITATION_INFORMATION_AS_ON_1_APR_09.csv",
+      "description": "~1.65M habitation records with SC/ST/General population coverage",
+      "join_key": null,
+      "level": "habitation",
+      "export_format": ["parquet"],
+      "status": "ready"
+    },
+    {
+      "id": "habitation_2010",
+      "name": "Basic Habitation Info April 2010",
+      "source_file": "BASIC_HABITATION_INFORMATION_AS_ON_1_APR_10.csv",
+      "level": "habitation",
+      "export_format": ["parquet"],
+      "status": "ready"
+    },
+    {
+      "id": "habitation_2011",
+      "name": "Basic Habitation Info April 2011",
+      "source_file": "BASIC_HABITATION_INFORMATION_AS_ON_1_APR_11.csv",
+      "level": "habitation",
+      "export_format": ["parquet"],
+      "status": "ready"
+    },
+    {
+      "id": "habitation_2012",
+      "name": "Basic Habitation Info April 2012",
+      "source_file": "BASIC_HABITATION_INFORMATION_AS_ON_1_APR_12.csv",
+      "level": "habitation",
+      "export_format": ["parquet"],
+      "status": "ready"
+    },
+    {
+      "id": "geo_states",
+      "name": "State Boundaries GeoJSON",
+      "source_file": "india-geodata-platform/public/data/states.geojson",
+      "description": "35 state boundaries (EPSG:4326)",
+      "join_key": "pc11_state_id",
+      "level": "state",
+      "export_format": ["geojson"],
+      "status": "ready"
+    },
+    {
+      "id": "geo_districts",
+      "name": "District Boundaries GeoJSON",
+      "source_file": "india-geodata-platform/public/data/districts.geojson",
+      "description": "641 district boundaries (EPSG:4326)",
+      "join_key": "pc11_district_id",
+      "level": "district",
+      "export_format": ["geojson"],
+      "status": "ready"
+    },
+    {
+      "id": "geo_subdistricts",
+      "name": "Sub-District Boundaries GeoJSON",
+      "source_file": "india-geodata-platform/public/data/subdistricts.geojson",
+      "description": "5,969 sub-district boundaries (EPSG:4326)",
+      "join_key": "pc11_subdistrict_id",
+      "level": "subdistrict",
+      "export_format": ["geojson"],
+      "status": "ready"
+    },
+    {
+      "id": "geo_villages",
+      "name": "Village Boundaries Shapefile",
+      "source_file": "shrug-pc11-village-poly-shp/village_modified.shp",
+      "description": "648,254 village polygons (653 MB) — too large for browser, use PMTiles",
+      "join_key": "pc11_village_id",
+      "level": "village",
+      "export_format": ["parquet"],
+      "status": "ready",
+      "notes": "Geometry stored separately as PMTiles for web delivery"
+    }
+  ]
+}

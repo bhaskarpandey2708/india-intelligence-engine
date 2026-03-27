@@ -1,0 +1,20 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@dsnp/parquetjs": "^1.8.7",
+    "@fastify/cors": "^11.2.0",
+    "fastify": "^5.8.4",
+    "parquetjs-lite": "^0.8.7"
+  }
+}

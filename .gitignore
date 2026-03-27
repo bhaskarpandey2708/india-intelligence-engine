@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+venv/
+.venv/
+*.ipynb_checkpoints/
+
+# Node.js
+node_modules/
+.next/
+dist/
+build/
+.env.local
+.env*.local
+
+# Data - large files go to HuggingFace, not GitHub
+data/raw/*.csv
+data/raw/*.shp
+data/raw/*.dbf
+data/raw/*.shx
+data/raw/*.prj
+data/raw/*.cpg
+data/raw/*.geojson
+data/processed/*.geojson
+data/processed/*.parquet
+data/exports/*.parquet
+
+# Keep schema/sample files
+!data/**/*.sample.csv
+!data/**/*.schema.json
+!data/**/metadata.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
