@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "huggingface_repo": "bhaskar-pandey/india-intelligence-data",
+  "huggingface_repo": "bhaskarpandey2708/india-intelligence-data",
   "datasets": [
     {
       "id": "census_district_2011",
