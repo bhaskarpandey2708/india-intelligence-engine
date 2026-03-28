@@ -16,16 +16,16 @@ build/
 .env*.local
 
 # Data - large files go to HuggingFace, not GitHub
-data/raw/*.csv
-data/raw/*.shp
-data/raw/*.dbf
-data/raw/*.shx
-data/raw/*.prj
-data/raw/*.cpg
-data/raw/*.geojson
-data/processed/*.geojson
-data/processed/*.parquet
-data/exports/*.parquet
+data/raw/**/*.csv
+data/raw/**/*.shp
+data/raw/**/*.dbf
+data/raw/**/*.shx
+data/raw/**/*.prj
+data/raw/**/*.cpg
+data/raw/**/*.geojson
+data/processed/**/*.geojson
+data/processed/**/*.parquet
+data/exports/**/*.parquet
 
 # Keep schema/sample files
 !data/**/*.sample.csv
