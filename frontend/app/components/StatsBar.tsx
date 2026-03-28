@@ -1,4 +1,6 @@
 'use client';
+import { useEffect, useState } from 'react';
+import { api } from '@/app/lib/api';
 import { NationalStats } from '@/app/types';
 
 function Stat({ label, value }: { label: string; value: string }) {
@@ -17,7 +19,15 @@ function fmt(n: number) {
   return String(n);
 }
 
-export default function StatsBar({ stats }: { stats: NationalStats }) {
+export default function StatsBar() {
+  const [stats, setStats] = useState<NationalStats | null>(null);
+
+  useEffect(() => {
+    api.stats().then(setStats).catch(() => null);
+  }, []);
+
+  if (!stats) return <div className="bg-gray-900 border-b border-gray-700 h-10" />;
+
   return (
     <div className="bg-gray-900 border-b border-gray-700 flex items-center overflow-x-auto">
       <Stat label="Population" value={fmt(stats.total_population)} />
