@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 *.egg-info/
 .env
+!frontend/.env.production
 venv/
 .venv/
 *.ipynb_checkpoints/
@@ -31,6 +32,15 @@ data/exports/**/*.parquet
 !data/**/*.sample.csv
 !data/**/*.schema.json
 !data/**/metadata.json
+
+# Whitelist small runtime files needed by the API on Hostinger
+# Census parquets (~507KB total — safe for git)
+!data/exports/census_district_2011.parquet
+!data/exports/census_state_2011.parquet
+# Simplified GeoJSONs (~28MB total — safe for git)
+!data/processed/geo_states_simplified.geojson
+!data/processed/geo_districts_simplified.geojson
+!data/processed/geo_subdistricts_simplified.geojson
 
 # OS
 .DS_Store

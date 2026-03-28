@@ -8,10 +8,11 @@ const parquet = require('@dsnp/parquetjs');
 const fs = require('fs');
 const path = require('path');
 
-const DATA_DIR = path.join(__dirname, '../../data');
+const DATA_DIR = process.env.DATA_DIR
+  ? path.resolve(process.env.DATA_DIR)
+  : path.join(__dirname, '../../data');
 const EXPORTS = path.join(DATA_DIR, 'exports');
 const PROCESSED = path.join(DATA_DIR, 'processed');
-const GEO_DIR = path.join(__dirname, '../../../india-geodata-platform/public/data');
 
 // BigInt → Number safe conversion
 function sanitize(row) {
@@ -61,12 +62,10 @@ async function loadAll() {
   // ── Simplified GeoJSONs ───────────────────────────────────────────────────
   console.log('[data] Loading GeoJSON layers...');
 
-  // Try simplified first, fall back to original
   function loadGeo(name) {
     const simplified = path.join(PROCESSED, `${name}_simplified.geojson`);
-    const original = path.join(GEO_DIR, `${name.replace('geo_', '')}.geojson`);
     if (fs.existsSync(simplified)) return readGeoJSON(simplified);
-    if (fs.existsSync(original)) return readGeoJSON(original);
+    console.warn(`[data] GeoJSON not found: ${simplified}`);
     return null;
   }
 

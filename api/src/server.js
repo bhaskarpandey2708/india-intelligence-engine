@@ -5,11 +5,17 @@ const { loadAll } = require('./data-loader');
 const PORT = process.env.PORT || 3001;
 const HOST = process.env.HOST || '0.0.0.0';
 
+// In production, restrict CORS to the frontend origin.
+// Set CORS_ORIGIN env var to your frontend URL (e.g. https://indiaintelligence.in)
+const CORS_ORIGIN = process.env.CORS_ORIGIN
+  ? process.env.CORS_ORIGIN.split(',').map(s => s.trim())
+  : true; // dev: allow all
+
 async function buildServer() {
   const fastify = Fastify({ logger: { level: 'info' } });
 
   await fastify.register(cors, {
-    origin: true,
+    origin: CORS_ORIGIN,
     methods: ['GET'],
   });
 
