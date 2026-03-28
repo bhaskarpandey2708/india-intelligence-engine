@@ -99,12 +99,39 @@ Hostinger Business Plan supports Node.js apps but we want the **frontend to be a
 - **API:** Node.js Express app runs on Hostinger Node.js hosting (separate subdomain or port)
 - **Env var:** Set `NEXT_PUBLIC_API_URL=https://api.yourdomain.com` before build
 
+### Outcome
+- Build verified clean ✓
+- All changes committed (`fc9b1c9`)
+
+---
+
+## Session 6 — Hostinger Deployment Setup
+**Date:** March 28, 2026
+**Commit:** `7274b95`
+**What happened:**
+
+### Problems fixed
+1. **`data-loader.js` broken GeoJSON path** — it referenced `../../../india-geodata-platform/public/data` which only exists locally. Removed the fallback, now only reads from `data/processed/` (simplified GeoJSONs). Made `DATA_DIR` configurable via env var.
+2. **CORS open to all** — tightened to `CORS_ORIGIN` env var in production (comma-separated list of allowed origins).
+3. **Data files not in git** — `.gitignore` was excluding all parquets/GeoJSONs. Whitelisted the 5 small runtime files (507KB census parquets + 28MB GeoJSONs). Large habitation files (132MB) stay on HuggingFace only.
+4. **`frontend/.env.production` blocked by gitignore** — the `frontend/.gitignore` had `.env*` catch-all. Changed to specific excludes and allowed `.env.production`.
+5. **`api.ts` had `next: { revalidate }` hint** — removed (session 5), meaningless client-side.
+
+### New files
+- `api/ecosystem.config.js` — PM2 config for Hostinger, with `env_production` block
+- `api/.env.example` — documents all env vars
+- `frontend/.env.production` — sets `NEXT_PUBLIC_API_URL=https://api.indiaintelligence.in`
+- `docs/DEPLOYMENT.md` — full Hostinger setup guide + re-deploy steps
+
+### Domain convention
+- Frontend: `https://indiaintelligence.in` → `public_html/`
+- API: `https://api.indiaintelligence.in` → Node.js app via PM2
+
 ### Next Steps
-- [ ] Run `npm run build` to verify static export compiles cleanly
-- [ ] Fix any remaining issues (dynamic routes, image optimization, etc.)
-- [ ] Set up API on Hostinger
-- [ ] Configure `NEXT_PUBLIC_API_URL` and do a full build
-- [ ] Upload `/out` to Hostinger
+- [ ] Push to GitHub
+- [ ] SSH into Hostinger, clone repo, `npm install`, create `.env`, start PM2
+- [ ] Upload `frontend/out/` to Hostinger `public_html/`
+- [ ] Verify with `curl https://api.indiaintelligence.in/health`
 
 ---
 
