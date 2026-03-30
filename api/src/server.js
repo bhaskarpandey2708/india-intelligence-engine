@@ -1,5 +1,7 @@
 const Fastify = require('fastify');
 const cors = require('@fastify/cors');
+const staticPlugin = require('@fastify/static');
+const path = require('path');
 const { loadAll } = require('./data-loader');
 
 const PORT = process.env.PORT || 3001;
@@ -36,25 +38,14 @@ async function buildServer() {
     },
   }));
 
-  // API info
-  fastify.get('/', async () => ({
-    name: 'India Intelligence Engine API',
-    version: '1.0.0',
-    description: 'Census 2011 data for all of India — states, districts, subdistricts, villages',
-    endpoints: {
-      health: 'GET /health',
-      states: 'GET /api/states',
-      state_detail: 'GET /api/states/:name',
-      districts: 'GET /api/districts?state=&min_pop=&max_pop=&min_literacy=&page=&limit=',
-      district_detail: 'GET /api/districts/:code',
-      census_district: 'GET /api/census/district/:code',
-      search: 'GET /api/search?q=',
-      stats: 'GET /api/stats',
-      geo_states: 'GET /api/geo/states',
-      geo_districts: 'GET /api/geo/districts?state=',
-      geo_subdistricts: 'GET /api/geo/subdistricts?district=',
-    },
-  }));
+  // Serve Next.js static frontend
+  const FRONTEND_DIR = process.env.FRONTEND_DIR || path.join(__dirname, '../../frontend/out');
+  await fastify.register(staticPlugin, {
+    root: FRONTEND_DIR,
+    prefix: '/',
+    index: 'index.html',
+    decorateReply: false,
+  });
 
   // Register route modules under /api prefix
   fastify.register(require('./routes/census'), { prefix: '/api' });

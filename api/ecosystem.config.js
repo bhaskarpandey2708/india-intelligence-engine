@@ -15,9 +15,10 @@ module.exports = {
       },
       env_production: {
         NODE_ENV: 'production',
-        PORT: 3001,               // Hostinger will proxy this port
-        CORS_ORIGIN: 'https://indiaintelligence.in,https://www.indiaintelligence.in',
-        // DATA_DIR: '/home/u123456789/india-intelligence-engine/data'  ← set if needed
+        PORT: 3001,
+        CORS_ORIGIN: 'https://data.future-ai.co',
+        DATA_DIR: '/home/u584311545/domains/data.future-ai.co/data',
+        FRONTEND_DIR: '/home/u584311545/domains/data.future-ai.co/public_html',
       },
     },
   ],
