@@ -1,3 +1,7 @@
+export type MapLayer = 'literacy' | 'population' | 'sex_ratio' | 'sc_pct' | 'st_pct';
+
+export type DrillLevel = 'national' | 'state' | 'district';
+
 export interface State {
   name: string;
   population: number;
@@ -13,6 +17,9 @@ export interface District {
   population: number;
   literacy_rate: number;
   sex_ratio: number;
+  sc_pct: number | null;
+  st_pct: number | null;
+  worker_rate: number | null;
 }
 
 export interface DistrictCensus extends District {
